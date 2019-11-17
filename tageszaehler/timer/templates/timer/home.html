@@ -1,0 +1,19 @@
+{% extends "timer/base.html" %}
+{% block content %}
+
+	
+    <div class="row ">
+        <div class="col-sm">
+        	<hr>
+        	<h2>Marlies & Maxi</h2>
+        	<small class="text-muted">{{ now }}</small>
+        	<hr>
+
+        	<h3>In love since...</h3>
+
+        	<small>{{ start }}</small>
+
+        	<h4>{{ diff }}</p>
+        </div>
+    </div>
+{% endblock %}

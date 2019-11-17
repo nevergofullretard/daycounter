@@ -1,0 +1,30 @@
+{% extends "timer/base.html" %}
+{% block content %}
+
+
+
+
+	
+    <div class="row ">
+        <div class="col-sm">
+
+              <div class="content-section">
+            <form method="POST">
+                {%  csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Marlies & Maxi</legend>
+                    {{  form }}
+                     
+                </fieldset>
+                <div class="row">
+                	<div class="col-sm">
+                		<button class="btn btn-outline-info" type="submit">Weiter</button>
+                	</div>
+                </div>
+            </form>
+            
+        </div>
+
+        </div>
+    </div>
+{% endblock %}
