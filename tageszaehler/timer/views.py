@@ -7,22 +7,26 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import DateTimeData
 
+from django.contrib.auth.models import User
+
+
+
 from .forms import LoginForm
 
 
 def func_years(from_date, to_date):
     if from_date is None:
         from_date = datetime.now()
-    
+
     from_date_year = from_date.year
     to_date_year = to_date.year
     diff = from_date_year - to_date_year
     return diff
-    
+
 def func_months(from_date, to_date):
     if from_date is None:
         from_date = datetime.now()
-    
+
     from_date_year = from_date.month
     to_date_year = to_date.month
     diff = from_date_year - to_date_year
@@ -31,10 +35,11 @@ def func_months(from_date, to_date):
 @login_required
 def home(request):
 
+
 	now = timezone.now()
 	start = DateTimeData.objects.get(id=1).datetime
-	
-	
+
+
 	years = func_years(from_date=now, to_date=start)
 
 	months_fix = func_months(from_date=now, to_date=start) + years * 12
@@ -57,7 +62,7 @@ def home(request):
 
 
 def login(request):
-	if request.user.is_authenticated:
+   if request.user.is_authenticated:
 		return redirect('/')
 	else:
 		if request.method == 'POST':
@@ -65,12 +70,12 @@ def login(request):
 			if form.is_valid():
 				password = form.cleaned_data.get('password')
 				print(password)
-				
+
 				new_login = authenticate(username='admin', password=password)
 				lgin(request, new_login)
 				return redirect('/')
-				
-				
+
+
 		else:
 			form = LoginForm()
 
