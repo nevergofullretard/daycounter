@@ -62,25 +62,26 @@ def home(request):
 
 
 def login(request):
-   if request.user.is_authenticated:
-		return redirect('/')
-	else:
-		if request.method == 'POST':
-			form = LoginForm(request.POST)
-			if form.is_valid():
-				password = form.cleaned_data.get('password')
-				print(password)
+	if request.method == 'POST':
+		form = LoginForm(request.POST)
+		if form.is_valid():
+			password = form.cleaned_data.get('password')
+			print(password)
 
+			try:
 				new_login = authenticate(username='admin', password=password)
 				lgin(request, new_login)
-				return redirect('/')
+			except AttributeError:
+				pass
+
+		return redirect('/')
 
 
-		else:
-			form = LoginForm()
+	else:
+		form = LoginForm()
 
-		context = {'form': form}
-		return render(request, 'timer/login.html', context=context)
+	context = {'form': form}
+	return render(request, 'timer/login.html', context=context)
 
 
 def add_picture(request):
