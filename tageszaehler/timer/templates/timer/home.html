@@ -12,8 +12,14 @@
         	<h3>In love since...</h3>
 
         	<small>{{ start }}</small>
+            <hr>
+        	<h2>{{ years }} Jahre</h2>
+            <h3>{{ months_fix }} Monate</h3>
+            <h4>{{ diff.days }} Tage</h4>
+            <h5>{{ hours_fix }} Stunden</h5>
+            <h6>{{ min_fix }} Minuten</h6>
+            <small>{{ sec_fix }} Sekunden</small>
 
-        	<h4>{{ diff }}</p>
         </div>
     </div>
 {% endblock %}
