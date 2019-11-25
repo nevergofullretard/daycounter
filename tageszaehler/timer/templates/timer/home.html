@@ -1,6 +1,30 @@
 {% extends "timer/base.html" %}
 {% block content %}
 
+<style type="text/css">
+    .btn-primary-outline {
+  background-color: transparent;
+  border-color: #ccc;
+}
+
+</style>
+
+<script>
+$(document).ready(function(){
+  $('#textToggle1').hide();
+
+  $('#buttonToggle1').click(function(){
+    $('#textToggle1').slideToggle();
+    $('#textToggle2').slideToggle();
+    });
+
+  var sec =  document.getElementById("sec_fix").textContent // approach with DOM
+  var sec2 = $("#sec_fix").text() // approach with jquery
+  console.log(sec)
+  console.log(sec2)
+});
+</script>   
+
 	
     <div class="row ">
         <div class="col-sm">
@@ -11,14 +35,45 @@
 
         	<h3>In love since...</h3>
 
-        	<small>{{ start }}</small>
             <hr>
-        	<h2>{{ years }} Jahre</h2>
-            <h3>{{ months_fix }} Monate</h3>
-            <h4>{{ diff.days }} Tage</h4>
-            <h5>{{ hours_fix }} Stunden</h5>
-            <h6>{{ min_fix }} Minuten</h6>
-            <small>{{ sec_fix }} Sekunden</small>
+
+                <img src="https://cdn0.iconfinder.com/data/icons/multimedia-2-7/48/Artboard_28-512.png" id=buttonToggle1 height="50" width="50">
+
+         
+            <div id="textToggle1">
+                {% if years == 1%}
+                        <h2 id='year_fix'>{{ years }} Jahr</h2>
+
+                {%else%}
+                    <h2 id='year_fix'>{{ years }} Jahre</h2>
+
+                {%endif%}
+                <h3 id='month_fix'>{{ months_fix }} Monate</h3>
+                <h4 id='days_fix'>{{ diff.days }} Tage</h4>
+                <h5 id='hours_fix'>{{ hours_fix }} Stunden</h5>
+                <h6 id='min_fix'>{{ min_fix }} Minuten</h6>
+                <small id='sec_fix'>{{ sec_fix }} Sekunden</small>
+
+            </div>
+        	
+             <div id="textToggle2">
+
+                {% if years == 1%}
+                        <h2>{{ years }} Jahr</h2>
+
+                {%else%}
+                    <h2>{{ years }} Jahre</h2>
+
+                {%endif%}
+                <h3>{{ months_relative }} Monate</h3>
+                <h4>{{ days_relative.days }} Tage</h4>
+                <h5>{{ hours_relative }} Stunden</h5>
+                <h6>{{ min_relative }} Minuten</h6>
+                <small>{{ sec_relative }} Sekunden</small>
+
+                
+
+            </div>
 
         </div>
     </div>
