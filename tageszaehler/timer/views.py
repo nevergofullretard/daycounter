@@ -58,7 +58,7 @@ def home(request):
 	#print(diff_split2)
 	hours_fix = diff_fix.days * 24 + int(diff_split2[0]) # könnte evtl falsch sein jeden 13. weil wegen timezone!
 	min_fix = diff_fix.days * 24 * 60 + int(diff_split2[1])
-	sec_fix = diff_fix.days * 24 * 60 * 60 + float(diff_split2[2])
+	sec_fix = diff_fix.days * 24 * 60 * 60 + int(diff_split2[2].split('.')[0])
 
 
 	if now.day >= 13:
@@ -82,7 +82,7 @@ def home(request):
 
 	hours_relative = int(diff_split2[0])
 	min_relative = int(diff_split2[1])
-	sec_relative = float(diff_split2[2])
+	sec_relative = int(diff_split2[2].split('.')[0])
 
 
 

@@ -5,8 +5,12 @@
     .btn-primary-outline {
   background-color: transparent;
   border-color: #ccc;
-}
 
+}
+    .clock-font {
+        font-family: 'Black Ops One';
+        color: white;
+    }
 </style>
 
 <script>
@@ -16,12 +20,58 @@ $(document).ready(function(){
   $('#buttonToggle1').click(function(){
     $('#textToggle1').slideToggle();
     $('#textToggle2').slideToggle();
+
     });
 
-  var sec =  document.getElementById("sec_fix").textContent // approach with DOM
-  var sec2 = $("#sec_fix").text() // approach with jquery
-  console.log(sec)
-  console.log(sec2)
+    //var sec =  document.getElementById("sec_fix").textContent // approach with DOM
+    var sec = $("#sec_relative").text(); // approach with jquery
+    secSplitted = sec.split(' ');
+    sec = parseInt(secSplitted[0])
+    var secText = secSplitted[1];
+
+    var min = $("#min_relative").text(); // approach with jquery
+    minSplitted = min.split(' ');
+    min = parseInt(minSplitted[0])
+    var minText = minSplitted[1];
+    console.log(minSplitted)
+
+
+
+  
+    window.setInterval(function(){
+        sec += 1;
+        if (sec == 60) {
+            
+            if (min == 60){
+             min = 0;
+
+                
+            } else {
+               min += 1;
+                $("#min_relative").text(min + ' ' + minText);
+            }
+
+            sec = 0;
+        }
+        $("#sec_relative").text(sec + ' ' + secText);
+        
+}, 1000);
+
+
+
+
+    function addOne() {
+        var sec2 = $("#sec_relative").text('sepp')
+
+    };
+
+    /*while (1 < 60) {
+      setTimeout(addOne, 1000)
+
+    }; */
+
+    
+
 });
 </script>   
 
@@ -40,15 +90,15 @@ $(document).ready(function(){
                 <img src="https://cdn0.iconfinder.com/data/icons/multimedia-2-7/48/Artboard_28-512.png" id=buttonToggle1 height="50" width="50">
 
          
-            <div id="textToggle1">
+            <div id="textToggle1" class="clock-font">
                 {% if years == 1%}
-                        <h2 id='year_fix'>{{ years }} Jahr</h2>
+                        <h2 id='years_fix'>{{ years }} Jahr</h2>
 
                 {%else%}
-                    <h2 id='year_fix'>{{ years }} Jahre</h2>
+                    <h2 id='years_fix'>{{ years }} Jahre</h2>
 
                 {%endif%}
-                <h3 id='month_fix'>{{ months_fix }} Monate</h3>
+                <h3 id='months_fix'>{{ months_fix }} Monate</h3>
                 <h4 id='days_fix'>{{ diff.days }} Tage</h4>
                 <h5 id='hours_fix'>{{ hours_fix }} Stunden</h5>
                 <h6 id='min_fix'>{{ min_fix }} Minuten</h6>
@@ -56,20 +106,20 @@ $(document).ready(function(){
 
             </div>
         	
-             <div id="textToggle2">
+             <div id="textToggle2" class="clock-font">
 
                 {% if years == 1%}
-                        <h2>{{ years }} Jahr</h2>
+                        <h2 id='years_relative'>{{ years }} Jahr</h2>
 
                 {%else%}
-                    <h2>{{ years }} Jahre</h2>
+                    <h2 id='years_relative'>{{ years }} Jahre</h2>
 
                 {%endif%}
-                <h3>{{ months_relative }} Monate</h3>
-                <h4>{{ days_relative.days }} Tage</h4>
-                <h5>{{ hours_relative }} Stunden</h5>
-                <h6>{{ min_relative }} Minuten</h6>
-                <small>{{ sec_relative }} Sekunden</small>
+                <h3 id='months_relative'>{{ months_relative }} Monate</h3>
+                <h4 id='days_relative'>{{ days_relative.days }} Tage</h4>
+                <h5 id='hours_relative'>{{ hours_relative }} Stunden</h5>
+                <h6 id='min_relative'>{{ min_relative }} Minuten</h6>
+                <small id='sec_relative'>{{ sec_relative }} Sekunden</small>
 
                 
 
